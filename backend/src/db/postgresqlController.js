@@ -15,7 +15,7 @@ const cn = {
 };
 const postgresClient = pgp(cn); // database instance;
 
-if(postgresClient) console.log("DB up and running.");
+if(postgresClient) console.log(`DB up and running at port ${process.env.PORT}`);
 
 module.exports = {
     postgresClient

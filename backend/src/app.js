@@ -35,8 +35,8 @@ app.use(function(req, res, next) {
 
 
 app.use('/', indexRouter);
-app.use('/passengers', passengersController);
-app.use('/packages', packagesController);
+app.use('/passenger', passengersController);
+app.use('/package', packagesController);
 
 
 app.use((err, req, res, next) => {
