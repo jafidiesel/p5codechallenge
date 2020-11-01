@@ -1,0 +1,11 @@
+.navbar-general{
+    .navbar-buttons{
+        display: flex;
+        flex-direction: row;
+        .nav-link{
+            color: #ffffff !important;
+            font-style: italic;
+            margin: auto 15px ;
+        }
+    }
+}
