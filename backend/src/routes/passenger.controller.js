@@ -1,8 +1,7 @@
 let express = require('express');
 let router = express.Router();
-//let campaignService = require('../services/campaign.service')
-let passengerService = require('../services/passenger.service')
-let buildResponse = require('../helpers/common').buildResponse
+let passengerService = require('../services/passenger.service');
+let buildResponse = require('../helpers/common').buildResponse;
 
 /* /passengers */
 router
@@ -15,8 +14,7 @@ router
             let result = await passengerService.newPassenger(req.body);
             
             if(result && result.status == 400){
-                res.status = result.status;
-                res.send( buildResponse(result.status, result.message, result.data));
+                res.status(result.status).send( buildResponse(result.status, result.message, result.data));
             }else if(result && result.status == 200){
                 res.send( buildResponse(result.status, result.message, result.data));
             }else{
@@ -34,8 +32,7 @@ router
             let result = await passengerService.getAllPassengers();
             
             if(result && result.status == 400){
-                res.status = result.status;
-                res.send( buildResponse(result.status, result.message, result.data));
+                res.status(result.status).send( buildResponse(result.status, result.message, result.data));
             }else if(result && result.status == 200){
                 res.send( buildResponse(result.status, result.message, result.data));
             }else{
@@ -49,11 +46,10 @@ router
         //  get passenger by passengerId
         try {
             // req body validation pending using joi
-            let result = await passengerService.getAPassenger(req.params.passengerId);
+            let result = await passengerService.getAPassenger({ passengerId: req.params.passengerId });
             
             if(result && result.status == 400){
-                res.status = result.status;
-                res.send( buildResponse(result.status, result.message, result.data));
+                res.status(result.status).send( buildResponse(result.status, result.message, result.data));
             }else if(result && result.status == 200){
                 res.send( buildResponse(result.status, result.message, result.data));
             }else{
@@ -67,11 +63,10 @@ router
         //  del a passenger by passengerId
         try {
             // req body validation pending using joi
-            let result = await passengerService.deleteAPassenger(req.params.passengerId);
+            let result = await passengerService.deleteAPassenger({ passengerId: req.params.passengerId });
             
             if(result && result.status == 400){
-                res.status = result.status;
-                res.send( buildResponse(result.status, result.message, result.data));
+                res.status(result.status).send( buildResponse(result.status, result.message, result.data));
             }else if(result && result.status == 200){
                 res.send( buildResponse(result.status, result.message, result.data));
             }else{

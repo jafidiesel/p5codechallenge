@@ -42,7 +42,7 @@ app.use('/packages', packagesController);
 app.use((err, req, res, next) => {
     //err.isServer
     let result = handleError(err, res) ;
-    result.send(result.body)
+    res.status(500).send(result.body);
     next()
   });
 

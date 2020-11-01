@@ -5,13 +5,6 @@ let password = process.env.db_password;
 let host = process.env.db_host;
 let port = process.env.db_port;
 let database = process.env.db_database;
-console.log(
-    username,
-    password,
-    host,
-    port,
-    database
-);
 
 const cn = {
     host: host, // 'localhost' is the default;
@@ -22,6 +15,7 @@ const cn = {
 };
 const postgresClient = pgp(cn); // database instance;
 
+if(postgresClient) console.log("DB up and running.");
 
 module.exports = {
     postgresClient
