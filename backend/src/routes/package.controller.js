@@ -39,9 +39,26 @@ router
             next(error)
         }
     })
+    .get('/:passengerId', async function(req,res,next){
+        try {
+            //get all packages by passengerID
+            // req body validation pending using joi
+            let result = await packageService.getAllPackagesByPassenger({passengerId: req.params.passengerId});
+            
+            if(result && result.status == 400){
+                res.status(result.status).send( buildResponse(result.status, result.message, result.data));
+            }else if(result && result.status == 200){
+                res.send( buildResponse(result.status, result.message, result.data));
+            }else{
+                next();
+            }
+        } catch (error) {
+            next(error)
+        }
+    })
     .delete('/:passengerId', async function(req,res,next){
         try {
-            //get all packages 
+            //delete all packages by passengerId
             // req body validation pending using joi
             let result = await packageService.withdrawAllPackages({passengerId: req.params.passengerId})
             

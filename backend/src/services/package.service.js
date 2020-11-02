@@ -27,7 +27,12 @@ const getAllPackages = async () => {
     return result && result.status === 400 ? { status: 400, message:"Error", data: result} : { status: 200, message:"Sucess", data: result};
 }
 
-const withdrawAllPackages = async (body) => {
+const getAllPackagesByPassenger = async (body) => {
+    let result = await packageRepository.getAllPackagesByPassenger(body.passengerId);
+    return result && result.status === 400 ? { status: 400, message:"Error", data: result} : { status: 200, message:"Sucess", data: result};
+}
+
+const withdrawAllPackages = async (body) => {    
     let result = await packageRepository.withdrawAllPackages(body.passengerId);
 
     return result && result.status === 400 ? { status: 400, message:"Error", data: result} : { status: 200, message:"Sucess", data: result};
@@ -37,5 +42,6 @@ const withdrawAllPackages = async (body) => {
 module.exports = {
     newPackage,
     getAllPackages,
-    withdrawAllPackages
+    withdrawAllPackages,
+    getAllPackagesByPassenger
 }

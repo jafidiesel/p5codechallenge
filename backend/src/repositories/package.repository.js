@@ -22,6 +22,11 @@ const getAllPackages = async () => {
     return result;
 }
 
+const getAllPackagesByPassenger = async (passengerid) => {
+    const result = await dbController.postgresClient.manyOrNone('SELECT * FROM package WHERE passengerid = $1', [passengerid]);
+    return result;
+}
+
 const withdrawAllPackages = async (passengerid) => {
     let result = dbController.postgresClient.tx( async t => {
         const q1 = t.many('DELETE FROM package WHERE passengerid = $1 RETURNING packagecode', [passengerid]);
@@ -44,5 +49,6 @@ module.exports = {
     newPackage,
     getAllPackages,
     withdrawAllPackages,
-    lastPackage
+    lastPackage,
+    getAllPackagesByPassenger
 }
