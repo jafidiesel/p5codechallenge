@@ -49,7 +49,7 @@ const NewPackage = (props) => {
                     if(response.status===200){
                         setCategory("");
                         setPassengerId(0);
-                        props.history.push("/");
+                        props.history.push("/package-list");
                     }
                 })
                 .catch(err => {
@@ -57,6 +57,19 @@ const NewPackage = (props) => {
                 })
         }else{
             setErrorMessage("There was an error submiting the form");
+        }
+    }
+
+    const categoryToTitle = (id) => {
+        switch (parseInt(id,10)) {
+            case 1:
+                return "Big";
+            case 2:
+                return "Small";
+            case 3:
+                return "Clothes";
+            default:
+                return '';
         }
     }
 
@@ -72,12 +85,12 @@ const NewPackage = (props) => {
                                     Category:
                                     <DropdownButton
                                         alignRight
-                                        title={!category ? 'Select a category' : category}
+                                        title={!category ? 'Select a category' : categoryToTitle(category)}
                                         onSelect={handleSelectCategory}
                                     >
-                                        <Dropdown.Item eventKey="1">1</Dropdown.Item>
-                                        <Dropdown.Item eventKey="2">2</Dropdown.Item>
-                                        <Dropdown.Item eventKey="3">3</Dropdown.Item>
+                                        <Dropdown.Item eventKey="1">Big</Dropdown.Item>
+                                        <Dropdown.Item eventKey="2">Small</Dropdown.Item>
+                                        <Dropdown.Item eventKey="3">Clothes</Dropdown.Item>
                                     </DropdownButton>
                                 </Form.Group>
 

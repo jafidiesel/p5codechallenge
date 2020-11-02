@@ -15,7 +15,20 @@ const PackageList = () => {
             setPackages(response.data.data);
         }
         fetchData();
-    },[])
+    },[]);
+
+    const categoryToTitle = (id) => {
+        switch (parseInt(id,10)) {
+            case 1:
+                return "Big";
+            case 2:
+                return "Small";
+            case 3:
+                return "Clothes";
+            default:
+                return '';
+        }
+    }
 
     const renderPackagesTable = () => {        
         if (packages && packages.length){
@@ -34,7 +47,7 @@ const PackageList = () => {
                                 <tr key={`table-row-${index}`}>
                                     <td className="text-center" >{index}</td>
                                     <td className="text-center" >{pack.packagecode}</td>
-                                    <td className="text-center" >{pack.category}</td>
+                                    <td className="text-center" >{categoryToTitle(pack.category)}</td>
                                 </tr>
                             )
                         })}
