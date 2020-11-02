@@ -9,6 +9,7 @@ Index:
 5. back-end .env config
 6. front-end .env config
 7. Postman collection (updated)
+8. Endpoints available in back-end
 
 ## How to setup this project
 
@@ -95,3 +96,14 @@ The administrator may:
 located at:
 
     /postman/p5-challenge.postman_collection.json
+    
+
+### Endpoints available in back-end
+
+- New package: POST /package
+- New passenger: POST /passenger
+- List all packages created: GET /package
+- List all passenger created: GET /passenger
+- Get a passenger created: GET /passenger/:passengerId
+- Delete a passenger: DELETE /passenger/:passengerId
+- Checkout all packages from a passenger: DELETE /:passengerId/package
