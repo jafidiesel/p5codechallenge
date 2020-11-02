@@ -3,33 +3,23 @@ import axios from 'axios';
 
 import { Container, Col, Row, Table } from 'react-bootstrap';
 
-const PackageList = () => {
+const PackagesByPassenger = (props) => {
     
     const [packages, setPackages] = useState([]);
     
     useEffect( () => {
-        async function fetchData() {
+        const fetchData = async ()=> {
             let URL = process.env.REACT_APP_API_V1;
-            const response = await axios.get(`${URL}/package`);
+            let passengerId = props.match.params.passengerId;
+
+            const response = await axios.get(`${URL}/package/${passengerId}`);
             setPackages(response.data.data);
         }
         fetchData();
     },[]);
 
-    const categoryToTitle = (id) => {
-        switch (parseInt(id,10)) {
-            case 1:
-                return "Big";
-            case 2:
-                return "Small";
-            case 3:
-                return "Clothes";
-            default:
-                return '';
-        }
-    }
-
-    const renderPackagesTable = () => {        
+    const renderPackagesTable = () => {
+        
         if (packages && packages.length){
             return (
                 <Table striped bordered hover size="sm">
@@ -65,13 +55,27 @@ const PackageList = () => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td colSpan="5">No Packages loaded.</td>
+                            <td colSpan="3">No Packages asociated to this passenger.</td>
                         </tr>
                     </tbody>
                 </Table>
                 )
         }
     }
+
+    const categoryToTitle = (id) => {
+        switch (parseInt(id,10)) {
+            case 1:
+                return "Big";
+            case 2:
+                return "Small";
+            case 3:
+                return "Clothes";
+            default:
+                return '';
+        }
+    }
+
 
     return <Fragment>
         <Container fluid>
@@ -84,4 +88,4 @@ const PackageList = () => {
     </Fragment>
 }
 
-export default PackageList;
+export default PackagesByPassenger;

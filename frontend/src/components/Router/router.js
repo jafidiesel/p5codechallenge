@@ -6,6 +6,7 @@ import PassengerList from '../PassengerList/PassengerList';
 import NewPassenger from '../NewPassenger/NewPassenger';
 import NewPackage from '../NewPackage/NewPackage';
 import PackageList from '../PackageList/PackageList';
+import PackagesByPassenger from '../PackagesByPassenger/PackagesByPassenger';
 
 const Router = () => (
     <Fragment>
@@ -15,6 +16,7 @@ const Router = () => (
             <Route exact path="/package-list" component={PackageList} />
             <Route exact path="/new-passenger" component={NewPassenger} />
             <Route exact path="/new-package" component={NewPackage} />
+            <Route exact path="/:passengerId/packages" component={PackagesByPassenger} />
         </Switch>
         <Footer />
     </Fragment>

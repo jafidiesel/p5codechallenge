@@ -1,7 +1,11 @@
 import React from 'react';
-
+import './footer.scss';
 const Footer = () => (
-    <p>footer</p>
+    <footer class="footer">
+        <p>
+            repo: <a href="https://github.com/jafidiesel/p5codechallenge" target="_blank" rel="noreferrer">github</a>
+        </p>
+    </footer>
 )
 
 export default Footer;
