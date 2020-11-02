@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "c10f7630-a993-4d5e-8547-9a6d3a49dd05",
+		"name": "Challenge - Bootcamp Avanzado",
+		"description": "Ejemplo de las rutas que esperamos esten presentes a lo largo del challenge.\n\nDeberia funcionar con una API abierta que pueda ser accedida via HTTP utilizando la arquitectura REST\nVamos a hacer incapie en el uso de HTTP, url's, methods y status codes.\n\nPueden modificar esta estructura siempre y cuando mantengan la funcionalidad.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ALL PASSENGERS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/passenger",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"passenger"
+					]
+				},
+				"description": "Get all passengers."
+			},
+			"response": []
+		},
+		{
+			"name": "PASSENGER BY ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/passenger/:passengerId",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"passenger",
+						":passengerId"
+					],
+					"variable": [
+						{
+							"key": "passengerId",
+							"value": "4"
+						}
+					]
+				},
+				"description": "Get specific passenger by Id.\nShould include his packages.\n\nResponds with a NOT FOUND code if no passenger found."
+			},
+			"response": []
+		},
+		{
+			"name": "NEW PASSENGER",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"passenger 1\",\n    \"flightId\": \"AJHFFF23\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/passenger",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"passenger"
+					]
+				},
+				"description": "Register a new passenger.\n\nResponds with a BAD REQUEST code on missing parameters.\n\nResponds with a CREATED code on success."
+			},
+			"response": []
+		},
+		{
+			"name": "NEW PACKAGE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"passengerId\": 4,\n    \"category\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/package",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"package"
+					]
+				},
+				"description": "Add a new package to a certain passenger.\n\nResponds with a BAD REQUEST code on missing parameters.\n\nResponds with a BAD REQUEST code if maximun package size exceeded for the passenger.\n\nResponds with a CREATED code on success."
+			},
+			"response": []
+		},
+		{
+			"name": "PASSENGER BY ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/passenger/:passengerId",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"passenger",
+						":passengerId"
+					],
+					"variable": [
+						{
+							"key": "passengerId",
+							"value": "4"
+						}
+					]
+				},
+				"description": "Checkout's a passenger and all his packages.\n\nResponds with a NOT FOUND code if not passenger found. "
+			},
+			"response": []
+		},
+		{
+			"name": "All Packages",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/package",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"package"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Withdrawal all packages of a passenger",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/package/:passengerID",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"package",
+						":passengerID"
+					],
+					"variable": [
+						{
+							"key": "passengerID",
+							"value": "4ds"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
