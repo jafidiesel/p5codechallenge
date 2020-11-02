@@ -1,7 +1,11 @@
 const packageRepository = require('../repositories/package.repository');
+const helpers = require('../helpers/common');
 
 const newPackage = async (body) => {
-    let result = await packageRepository.newPackage(body.category,body.passengerId, body.packageCode);
+    let lastPackage = await packageRepository.lastPackage();
+    let packageCode = lastPackage ? helpers.packageCodeGenerator(lastPackage.packageid) : helpers.packageCodeGenerator(0);
+    
+    let result = await packageRepository.newPackage(body.category,body.passengerId, packageCode );
     if(result && result.packagecode){
         response = {
             status: 200,

@@ -3,11 +3,12 @@ let router = express.Router();
 let packageService = require('../services/package.service')
 let buildResponse = require('../helpers/common').buildResponse
 
-/* /packages */
+/* /package */
 router
     .post('/', async function(req,res,next){
         try {
             // req body validation pending using joi
+            
             let result = await packageService.newPackage(req.body);
 
             if(result && result.status === 400){

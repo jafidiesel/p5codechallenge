@@ -2,6 +2,7 @@ let dbController = require('../db/postgresqlController');
 let errorHandler = require('../helpers/error');
 
 const newPackage = async (category, passengerId, packageCode) => {
+    
     let result = dbController.postgresClient.tx( async t => {
         const q1 = t.one('INSERT INTO package(category,passengerid, packagecode) VALUES($1, $2, $3) RETURNING packagecode', [category, passengerId, packageCode]);
         return await t.batch([q1]);
@@ -35,8 +36,13 @@ const withdrawAllPackages = async (passengerid) => {
         })
     return result;
 }
+
+const lastPackage = async () => {
+    return dbController.postgresClient.oneOrNone("SELECT * FROM package ORDER BY packageid DESC LIMIT 1");
+}
 module.exports = {
     newPackage,
     getAllPackages,
-    withdrawAllPackages
+    withdrawAllPackages,
+    lastPackage
 }

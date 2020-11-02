@@ -1,5 +1,3 @@
-var crypto = require('crypto');
-
 module.exports = {
     buildResponse: function (status, msg, data){
         return {
@@ -7,9 +5,11 @@ module.exports = {
             message: msg,
             data: data
         }
-    
     },
-    hashGenerator : (player_name) => {
-        return crypto.createHash('md5').update(player_name + Math.random() ).digest('hex');
+    packageCodeGenerator : (lastPackageCode) => {
+        let stringPart = "PA";
+        let idPart = lastPackageCode + 1;
+        let randomPart = Math.floor(Math.random() * 6) + 1;
+        return stringPart + idPart + randomPart;
     }
 }

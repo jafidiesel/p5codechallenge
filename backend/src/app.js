@@ -10,8 +10,8 @@ if (process.env.NODE_ENV !== 'production') {
 
 var indexRouter = require('./routes/index');
 
-var passengersController = require('./routes/passenger.controller');
-var packagesController = require('./routes/package.controller');
+var passengerController = require('./routes/passenger.controller');
+var packageController = require('./routes/package.controller');
 
 let handleError = require('./helpers/error').handleError
 
@@ -35,8 +35,8 @@ app.use(function(req, res, next) {
 
 
 app.use('/', indexRouter);
-app.use('/passenger', passengersController);
-app.use('/package', packagesController);
+app.use('/passenger', passengerController);
+app.use('/package', packageController);
 
 
 app.use((err, req, res, next) => {
@@ -45,13 +45,6 @@ app.use((err, req, res, next) => {
     res.status(500).send(result.body);
     next()
   });
-
-// const redis = require("redis");
-// const client = redis.createClient();
-/* 
-client.on("error", function(error) {
-    console.error(error);
-}); */
 
 
 module.exports = app;

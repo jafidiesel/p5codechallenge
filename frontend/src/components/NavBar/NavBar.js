@@ -8,6 +8,7 @@ const NavBar = () => (
         <Navbar.Brand >p5-codechallenge</Navbar.Brand>
         <Nav className="navbar-buttons">
             <Link className="nav-link" to="/">Passenger list</Link>
+            <Link className="nav-link" to="/package-list">Package list</Link>
             <Link className="nav-link" to="/new-passenger">New Passenger</Link>
             <Link className="nav-link" to="/new-package">New Package</Link>
         </Nav>
